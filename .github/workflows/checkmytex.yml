@@ -1,0 +1,24 @@
+# Use the python PIP package checkmytex to check the LaTeX files and archived the report as an artifact
+name: Check my LaTeX files
+on: [ push ] # Trigger(s) du workflow, ici push uniquement
+jobs:
+  check_latex: # Name of the job
+    runs-on: ubuntu-latest # type de machine sur laquelle les steps vont être exécutés
+    steps:
+      - uses: actions/checkout@v4 # Utilisation d'une action pour récupérer le code source
+      - name: Set up Python
+        uses: actions/setup-python@v4 # Utilisation d'une action pour installer Python
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Check LaTeX files
+        # Execution de checkmytex sur le fichier LaTeX
+        run: python -m checkmytex doc/Scripting-L3-CSI.tex --html checkmytex-report.html
+      - name: Upload report
+        uses: actions/upload-artifact@v4 # Utilisation d'une action pour uploader un artefact
+        with:
+          name: checkmytex-report # Nom de l'artefact
+          path: checkmytex-report.html # Chemin de des artefacts à stocker

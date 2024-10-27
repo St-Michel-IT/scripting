@@ -1,0 +1,21 @@
+#cloud-config
+users:
+  - name: chrichri
+    groups: [ sudo ]
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    # Password is "ubuntu"
+    passwd: "$6$ZfuHEx5XbbEfziUI$H7RXNTnlB4k2uhSOTrdJmfaS8eh4zr.Mq3JGnkHQM7t5ACeL446.gADf59aOV4E1ROjiOOG00YwGjjC33mEoR0"
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJFCnh8q1wkPaqOLAgnAAFnbSvsIBF+TJqDnBziRj4i chrichri@chrichri-HKD-WXX
+runcmd:
+  # Redirection operator fail even in sudo mode
+  - su root
+  # Disable root login
+  - sed -i '/PermitRootLogin/d' /etc/ssh/sshd_config
+  - echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+  # Disable password authentication
+  - sed -i '/PasswordAuthentication/d' /etc/ssh/sshd_config
+  - echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+  - systemctl restart ssh

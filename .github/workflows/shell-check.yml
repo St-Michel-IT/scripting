@@ -1,0 +1,19 @@
+# On push, verify the shell scripts in the repository using shellcheck and store the report in a GitHub artifact
+name: ShellCheck
+on: [ push ]
+jobs:
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code of the repository
+        uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt install shellcheck
+      - name: Run ShellCheck
+        run: shellcheck --format=checkstyle $(find . -type f -name "*.sh") > shellcheck-report.xml
+      - name: Upload ShellCheck report
+        uses: actions/upload-artifact@v4
+        if: always() # Make documentation an artifact even if a step fail
+        with:
+          name: shellcheck-report
+          path: shellcheck-report.xml
