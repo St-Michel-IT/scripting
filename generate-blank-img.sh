@@ -19,12 +19,13 @@ function image_fine_name() {
 }
 INSTANCE_NUMBER=$RANDOM
 IMAGE=$(image_fine_name $INSTANCE_NUMBER)
-while [ -e "$IMAGE_IMAGE_PATH" ]; do
+IMAGE_PATH="$VM_PATH/$IMAGE"
+while [ -e "$IMAGE_PATH" ]; do
     echo "Generating a new image name"
     INSTANCE_NUMBER=$RANDOM
     IMAGE=$(image_fine_name $INSTANCE_NUMBER)
+    IMAGE_PATH="$VM_PATH/$IMAGE"
 done
-readonly IMAGE_PATH="$VM_PATH/$IMAGE"
 echo "Creating image at path: $IMAGE_PATH"
 
 # Check if the image exists

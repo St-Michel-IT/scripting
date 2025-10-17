@@ -3,7 +3,7 @@
 # sudo apt-get update && sudo apt-get install -y qemu-system-x86 wget openssh-client
 # Verify the number of arguments, should be one
 if [ "$#" -ne 1 ]; then
-    echo "Only one and only one argument, usage is: $0 <image path>"
+    echo "One and only one argument, usage is: $0 <image path>"
     exit 1
 fi
 
