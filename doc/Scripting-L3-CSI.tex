@@ -1,4 +1,5 @@
 \documentclass{beamer}
+\usepackage{caption}
 \RequirePackage{luatex85}
 \include{../style/cours-style.sty}
 
@@ -51,11 +52,11 @@
         \begin{columns}
             \column{0.7\textwidth}
             \begin{itemize}
-                \item 2\textsuperscript{nde} année d'intervenant à Saint-Michel \emoji{star-struck}.
+                \item 4\textsuperscript{ème} année d'intervenant à Saint-Michel \emoji{star-struck}.
 
                 \item 7 ans de conseil en développement au sein d'SSII~.
 
-                \item 8 ans de conseil en développement à mon compte \href{https://papit.fr}{PapIT}.
+                \item 9 ans de conseil en développement à mon compte \href{https://papit.fr}{PapIT}.
 
                 \item Passionné~!
                 \bigbreak
@@ -80,6 +81,7 @@
     \subsection{Shell}\label{subsec:shell}
 
     \begin{frame}{Shell}{Qu'est-ce~?}
+        \pause
         Shell c'est~:
         \begin{itemize}
             \item C'est un exécutable.
@@ -92,6 +94,20 @@
             \item Des Shells plus \textit{user friendly} et plus lourds comme \lstinline{zsh}.
             \item Des Shells éxotiques comme \lstinline{tcsh} et \lstinline{csh}.
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Shell}{Pourquoi Shell et Bash dans le programme~?}
+        Quel sens cela a-t-il~?
+        \bigbreak
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[width=10cm]{image/bashism.munge}
+            \captionsetup{justification=centering, singlelinecheck=false}
+            \caption{Thou shalt not suffer a bashism to live,\\ \protect\url{https://me.micahrl.com/blog/bashism/}}
+        \end{figure}
+        \pause
+        \bigbreak
+        Une \textit{cheatsheet} pour corriger les \textit{Bashism}, \url{https://mywiki.wooledge.org/Bashism}
     \end{frame}
 
     \begin{frame}{Shell}{Bourne Shell VS Bourne Again Shell\footnote{Difference between sh and bash, \url{https://www.geeksforgeeks.org/difference-between-sh-and-bash/}}}
@@ -265,7 +281,7 @@ ts-test
 
     \begin{frame}[fragile]{Shell}{Les alias}
         Les alias sont des raccourcis pour des commandes.
-        ils sont donc intéressant à paramétrer pour les commandes longues et récurrentes.
+        Ils sont donc intéressants à paramétrer pour les commandes longues et fréquentes.
         \bigbreak
         Par exemple, pour la commande \lstinline{ls -l}~:
         \begin{lstlisting}[language=bash]
@@ -700,7 +716,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
 5;"Brown";45;3000;2
         \end{lstlisting}
         \begin{dangercolorbox}
-            Les 2 doivent avoir exactement le même nombre de ligne~!
+            Les 2 doivent avoir exactement le même nombre de lignes~!
             Les 3 dernières lignes ont une correspondance dans le fichier \lstinline{dept.csv} mais aucune association n'est faite, car le fichier \lstinline{dept.csv} n'a que 3 lignes.
 
             Les clés d'associations doivent être triées, il y a donc toujours une étape avec \lstinline{sort} auparavant.
@@ -736,7 +752,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
         \begin{center}
             \includegraphics[width=11cm]{image/pre-traitement-unix.drawio}
         \end{center}
-        Un ETL peut le faire mais beaucoup utilisent encore ces outils\ldots
+        Un ETL peut le faire, mais beaucoup utilisent encore ces outils\ldots
     \end{frame}
 
     \begin{frame}{Commandes de traitement de données}{\lstinline{awk}, exercice \execcounterdispinc{}~:}
@@ -756,7 +772,7 @@ $ join -1 1 -2 1 -t ';' -a 1 <(sed 1d employee.csv | sort -k 1 --field-separator
             \bigbreak
             Il est courant de limiter les données en base SQL aux besoins des programmes haut-niveau, d'un backend Java, CoBOL, PHP par exemple, pour ne pas surcharger les serveurs SQL~.
             \bigbreak
-            Ces commandes ne remplacent pas SQL, car elles s'interfacent difficilement avec ces programmes haut-niveau.
+            Ces commandes ne remplacent pas SQL, car elles s'interfacent difficilement avec ces programmes hauts niveaux.
             \bigbreak
             Par contre, elles peuvent traiter des flux de données avant de les mettre en base.
             L'exercice consiste à développer avec ces commandes l'équivalent des \href{https://github.com/DigicompClassesByPapIT/linux2/blob/main/sqlite-hr.sh}{traitements SQL de ce fichier}.
@@ -866,7 +882,7 @@ print("lentgh of the struct:", getsizeof(pack(">H", 0xffff))) # lentgh of the st
         \begin{columns}
             \column{0.7\textwidth}
             Rsync est un outil de synchronisation de fichiers qui permet de copier des fichiers locaux ou distants.
-            Mais son réel atout est bien pour la synchronisation de fichiers, en local on a \lstinline{cp} pour copier ou pour pousser à travers le SSH sans juste synchroniser il existe \lstinline{scp}\ldots
+            Mais son réel atout est bien pour la synchronisation de fichiers, en local on a \lstinline{cp} pour copier ou pour pousser à travers le SSH sans juste synchroniser, il existe \lstinline{scp}\ldots
             \bigbreak
             Il est souvent utilisé pour synchroniser des fichiers entre un serveur et un client SSH, donc de ne déplacer que le nécessaire.
             \bigbreak
@@ -950,7 +966,7 @@ $ rsync -a utilisateur@serveur:/chemin/vers/mon-dossier/ /chemin/vers/mon-dossie
             Seulement \lstinline{source}
             \item Des performances critiques, car c'est un langage interprété.
             \item Des applications ayants des dépendances car aucun package manager.
-            \item Des algorithmes complexes, car il n'éxiste aucun débuggeur sous Bash ou Shell!
+            \item Des algorithmes complexes, car il n'éxiste aucun débuggeur sous Bash ou Shell natif sous Linux/Unix/Windows!
             Il faut ajouter des outputs du type \lstinline{echo} ou \lstinline{printf} pour débugger ou des options.
         \end{itemize}
         \bigbreak
@@ -982,7 +998,7 @@ sys     0m0,006s
         \begin{center}
             \includegraphics[width=5cm]{image/pinguin-hugging-shell}
         \end{center}
-        Ceci étant dit, sa syntaxe et son outillage simple en font un outils de scripting idéal pour tous.
+        Ceci étant dit, sa syntaxe et son outillage simple en font un outil de scripting idéal pour tous.
         Par opposition à d'autres langages nécessitant une expertise plus poussée.
     \end{frame}
 
@@ -1217,8 +1233,8 @@ $ echo $resultat  # Produit : 8
 
     \begin{frame}[fragile]{Les différentes parenthèses en Bash\cref{penthesisbash}}{\lstinline{<<} Heredocs}
         \begin{itemize}
-            \item Permet d'insérer du texte multi-ligne dans un script Bash.
-            \item Utilisé pour les scripts ou les messages longs.
+            \item Permet d'insérer du texte multiligne dans un script Bash.
+            \item Utilisé pour les scripts ou les longs messages.
             \item Exemple :
             \begin{lstlisting}[language=bash]
 $ cat <<EOF
@@ -1349,13 +1365,13 @@ $ time <commande>
         L'objectif de cette section est d'éditer un script Shell dans un environment dédié au développement.
         Un environment qui contient tous les outils nécessaires pour trouver rapidement les erreurs de syntaxe et tester son script.
         \bigbreak
-        Pour le lancer taper \textquote{code} dans la barre de recherche de Linux ou \lstinline{code .} dans un terminal pour le lancer dans le répertoire courant.
+        Pour le lancer tapez \textquote{code} dans la barre de recherche de Linux ou \lstinline{code .} dans un terminal pour le lancer dans le répertoire courant.
         \begin{itemize}
             \item Ouvrir VS Code.
             \item Ouvrir ou créer le fichier contenant le code Shell.
             \item Trouver un plugin dédié au développement Shell dans la \textit{marketplace}.
             Ici \textquote{ShellCheck} pour la vérification de la syntaxe.
-            En lisant la documentation on comprend que c'est une intégration de ShellCheck qui vient sans ce dernier sur certaines plateformes.
+            En lisant la documentation, on comprend que c'est une intégration de ShellCheck qui vient sans ce dernier sur certaines plateformes.
             Il faut installer ShellCheck.
             \item Installer le plugin.
             \item Tester le plugin en écrivant sciemment un code erroné.
@@ -1368,7 +1384,7 @@ $ time <commande>
     \end{frame}
 
     \begin{frame}[fragile]{Editeur Shell}{VS Code de Microsoft et ShellCheck}
-        Les erreurs/warning qui sont en ligne apparaissent dans l'IDE VS Code.
+        Les erreurs/warning apparaissent dans l'IDE VS Code.
         \begin{lstlisting}[language=bash,basicstyle=\tiny\ttfamily]
 $ shellcheck fibo.ksh
 
@@ -1405,7 +1421,7 @@ typeset val=$((valeur1 + valeur2))
     \end{frame}
 
     \begin{frame}{Editeurs Shell}{Exercice \execcounterdispinc}
-        Cette exercice a pour but d'illustrer que les éditeurs fournissent une aide pour tout type de langage.
+        Cet exercice a pour but d'illustrer que les éditeurs fournissent une aide pour tout type de langage.
         \begin{itemize}
             \item Installer VS Code.
             \item Installer le plugin ShellCheck.
@@ -1527,7 +1543,7 @@ strace: Process 129599 attached
     \end{frame}
 
     \begin{frame}{Bash debugging}{débuggeur pas-à-pas avec point d'arrêt}
-        Comme pour la quasi totalité des langages de programmation, même les plus anciens, Shell a un débuggeur pas-à-pas.
+        Comme pour la quasi-totalité des langages de programmation, même les plus anciens, Shell a un débuggeur pas-à-pas.
         \bigbreak
         On peut mettre des points d'arrêt, avancer pas-à-pas, voir les valeurs des variables, \textit{etc} avec \lstinline{bashdb}\footnote{bashdb - a gdb-like debugger for bash, \url{https://bashdb.readthedocs.io/en/latest/}} ou son viewer VS Code\footnote{\label{bash-debug}Bash Debug, \url{https://marketplace.visualstudio.com/items?itemName=rogalmic.bash-debug}} pour plus de simplicité.
         \bigbreak
@@ -1927,7 +1943,7 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0    s
         \end{itemize}
         \bigbreak
         Les clouds providers (Azure, AWS, OVH) publient également des clients Python de leurs API.
-        Mais nous on a Proxmox \emoji{flexed-biceps}\ldots
+        Mais nous, on a Proxmox \emoji{flexed-biceps}\ldots
     \end{frame}
 
 
